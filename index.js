@@ -13,6 +13,14 @@ async function main() {
 
   io.attach(server);
 
+  io.on("connection", (socket)=>{
+    console.log("A new socket has connected", socket.id);
+    socket.on('own:message', (data)=>{
+        console.log("Message from Socket :", data);
+        socket.broadcast.emit('server:message', data);
+    })
+  })
+
   server.listen(PORT, () => {
     console.log("Server is listening on port ", PORT);
   });
