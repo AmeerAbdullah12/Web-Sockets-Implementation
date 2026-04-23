@@ -9,7 +9,17 @@
 </head>
 
 <body>
-    <div class="chat-container">
+    <!-- Username modal — shown first -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <h2>Enter your name</h2>
+            <input type="text" id="usernameInput" placeholder="Your name..." autocomplete="off" />
+            <button id="joinButton">Join Chat</button>
+        </div>
+    </div>
+
+    <!-- Chat — hidden until name is submitted -->
+    <div class="chat-container" id="chatContainer" style="display: none;">
         <div class="chat-header">Chat Room</div>
         <div class="messages-container" id="messagesContainer"></div>
         <div class="input-area">

@@ -18,3 +18,12 @@ export function consumeInput() {
     messageInput.focus();
     return value;
 }
+
+export function joiningMessage(whoJoined){
+    // Show standard chat type which says whoJoined the chat
+    const el = document.createElement('div');
+    el.className = `message system`;
+    el.textContent = whoJoined;
+    messagesContainer.appendChild(el);
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}

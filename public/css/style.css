@@ -75,6 +75,12 @@ body {
     background: #e0e0e0;
     color: #333;
 }
+.message.system {
+    align-self: center;
+    background: transparent;
+    color: #999;
+    font-style: italic;
+}
 
 .input-area {
     padding: 15px;
