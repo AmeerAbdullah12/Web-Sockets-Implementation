@@ -4,16 +4,20 @@
 const socket = io();
 
 // Call this once from main.js to register what happens on incoming events
-export function registerHandlers({ onMessage, onJoining, onTypingStart, onTypingStop }) {
+export function registerHandlers({ onMessage, onJoining, onTypingStart, onTypingStop, onUserList }) {
     socket.on('server:message', (data) => {
         onMessage(data);
     });
 
     socket.on('chat:system', (whoJoined)=>{
         onJoining(whoJoined);
+
     })
     socket.on('typing:start', (username) => onTypingStart(username));
     socket.on('typing:stop', (username) => onTypingStop(username));
+    socket.on('user:list', (users) => {
+        onUserList(users);
+    });
 }
 
 // Send a chat message to the server

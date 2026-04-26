@@ -64,3 +64,10 @@ function renderTyping() {
         : `${names} are typing...`;
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
 }
+
+export function renderUserList(users) {
+    const userList = document.getElementById('userList');
+    userList.innerHTML = users
+        .map(username => `<li>${username}</li>`)
+        .join('');
+}

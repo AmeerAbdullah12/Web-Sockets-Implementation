@@ -97,6 +97,58 @@ body {
     min-height: 18px;
     font-style: italic;
 }
+.app-container {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+}
+
+.sidebar {
+    width: 160px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    height: 90vh;
+    max-height: 600px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px;
+    border-radius: 10px 10px 0 0;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.user-list {
+    list-style: none;
+    padding: 10px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.user-list li {
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.user-list li::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #4caf50;
+    flex-shrink: 0;
+}
 #messageInput {
     flex: 1;
     padding: 12px;

@@ -21,9 +21,12 @@ export function setupSockets(io) {
       socket.broadcast.emit("typing:stop", username);
     });
     socket.on("disconnect", () => {
+      const username = users.get(socket.id);
+      users.delete(socket.id);
+      io.emit("user:list", [...users.values()]);
       socket.broadcast.emit(
         "chat:system",
-        `${users.get(socket.id)} left the chat`,
+        `${username} left the chat`,
       );
       console.log("Socket disconnected:", socket.id);
     });
