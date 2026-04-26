@@ -1,12 +1,15 @@
 
-import { registerHandlers, sendMessage, join } from './socket.js';
-import { renderMessage, consumeInput, joiningMessage } from './ui.js';
+import { registerHandlers, sendMessage, join, emitTypingStart, emitTypingStop } from './socket.js';
+import { renderMessage, consumeInput, joiningMessage, addTypingUser, removeTypingUser} from './ui.js';
 
 // --- Wire socket events to UI ---
 registerHandlers({
     onMessage: (data) => renderMessage(data, 'other'),
     onJoining: (whoJoined) => joiningMessage(whoJoined),
+    onTypingStart:  (username) => addTypingUser(username),
+    onTypingStop:   (username) => removeTypingUser(username),
 });
+
 
 // --- Wire UI interactions to socket ---
 function handleSend() {
@@ -34,4 +37,20 @@ joinButton.addEventListener('click', () => {
 
     document.getElementById('modalOverlay').style.display = 'none';
     document.getElementById('chatContainer').style.display = 'flex';
+});
+
+// Typing indicator with debounce
+let typingTimer = null;
+let isTyping = false;
+
+messageInput.addEventListener('input', () => {
+    if (!isTyping) {
+        emitTypingStart();
+        isTyping = true;
+    }
+    clearTimeout(typingTimer);
+    typingTimer = setTimeout(() => {
+        emitTypingStop();
+        isTyping = false;
+    }, 1000);
 });

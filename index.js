@@ -4,7 +4,7 @@ import path from "node:path";
 import { Server } from "socket.io";
 import { setupSockets } from "./src/socketHandlers.js";
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.static(path.resolve("./public")));
